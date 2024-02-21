@@ -32,5 +32,22 @@ namespace practicaweb2.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("GetById/{id}")]
+        public IActionResult Get(int id)
+        {
+            Equipo? equipo = (from e in _equiposContext.Equipos where e.IdEquipos == id select e).FirstOrDefault();
+            if (equipo == null)
+            {
+                return NotFound("error 456");
+               
+            }
+            else
+            {
+                return Ok(equipo);
+
+            }
+        }
     }
 }
